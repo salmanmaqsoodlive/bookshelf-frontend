@@ -40,8 +40,10 @@ const Books = () => {
       setBooks(response.books);
     } catch (error) {
       if (error?.response?.status === 401) {
-        localStorage.removeItem("user");
-        localStorage.removeItem("access-token");
+        if (typeof window !== "undefined") {
+          localStorage.removeItem("user");
+          localStorage.removeItem("access-token");
+        }
         isAuthenticated();
       }
       toast.error(error?.response?.data?.message, {

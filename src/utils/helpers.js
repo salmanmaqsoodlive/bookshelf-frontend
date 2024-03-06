@@ -1,5 +1,7 @@
 export default function isAuthenticated() {
-  const user = localStorage.getItem("user");
-  const accessToken = localStorage.getItem("access_token");
-  return user && accessToken ? true : false;
+  if (typeof window !== "undefined") {
+    const user = localStorage.getItem("user");
+    const accessToken = localStorage.getItem("access_token");
+    return user && accessToken ? true : false;
+  }
 }

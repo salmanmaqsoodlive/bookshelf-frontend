@@ -26,8 +26,10 @@ const Signup = () => {
   const singupButtonClick = async (data) => {
     try {
       const response = await signup(data);
-      localStorage.setItem("user", JSON.stringify(response.user));
-      localStorage.setItem("access_token", response.token);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("user", JSON.stringify(response.user));
+        localStorage.setItem("access_token", response.token);
+      }
       toast(response.message, {
         position: "top-center",
         className: "foo-bar",

@@ -6,9 +6,10 @@ import { deleteUserApi } from "@/api/user";
 
 const Navbar = () => {
   const logout = () => {
+    if (typeof window !== "undefined") {
     localStorage.clear("user");
     localStorage.clear("access-token");
-
+    }
     toast("Bye! 👋", {
       position: "top-center",
       className: "foo-bar",
@@ -20,8 +21,10 @@ const Navbar = () => {
   const deleteUser = async () => {
     try {
       await deleteUserApi();
+      if (typeof window !== "undefined") {
       localStorage.clear("user");
       localStorage.clear("access-token");
+      }
       toast("Good Bye! 👋", {
         position: "top-center",
         className: "foo-bar",

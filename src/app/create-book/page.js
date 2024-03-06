@@ -47,8 +47,10 @@ const CreateBook = () => {
       setGenres(response?.genres);
     } catch (error) {
       if (error?.response?.status === 401) {
+        if (typeof window !== "undefined") {
         localStorage.removeItem("user");
         localStorage.removeItem("access-token");
+        }
         isAuthenticated();
       }
       toast.error(error?.response?.data?.message, {

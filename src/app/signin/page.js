@@ -27,8 +27,10 @@ const Signin = () => {
   const singinButtonClick = async (data) => {
     try {
       const response = await signin(data);
+      if (typeof window !== "undefined") {
       localStorage.setItem("user", JSON.stringify(response?.user));
       localStorage.setItem("access_token", response?.token);
+      }
       toast(response?.message, {
         position: "top-center",
         className: "foo-bar",

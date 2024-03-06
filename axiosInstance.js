@@ -6,7 +6,7 @@ let api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    config.headers["Authorization"] = `Bearer ${localStorage.getItem(
+    config.headers["Authorization"] = `Bearer ${typeof window !== "undefined" && localStorage.getItem(
       "access_token"
     )}`;
     return config;
